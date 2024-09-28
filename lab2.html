@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Quản lý Khóa học</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .action-buttons button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hệ thống Quản lý Khóa học</h1>
+        <button onclick="openModal('create')">Tạo Khóa học Mới</button>
+        <table id="courseTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên khóa học</th>
+                    <th>Giảng viên</th>
+                    <th>Ngày tạo</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu khóa học sẽ được thêm vào đây bằng JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Chi tiết Khóa học</h2>
+            <form id="courseForm">
+                <input type="hidden" id="courseId">
+                <label for="courseName">Tên khóa học:</label>
+                <input type="text" id="courseName" required maxlength="255">
+                <label for="courseDescription">Mô tả khóa học:</label>
+                <textarea id="courseDescription" rows="4"></textarea>
+                <label for="instructor">Giảng viên:</label>
+                <select id="instructor" required>
+                    <option value="">Chọn giảng viên</option>
+                    <option value="1">Nguyễn Văn A</option>
+                    <option value="2">Trần Thị B</option>
+                </select>
+                <div id="courseDetails" style="display:none;">
+                    <p><strong>Ngày tạo:</strong> <span id="createdAt"></span></p>
+                    <p><strong>Cập nhật lần cuối:</strong> <span id="updatedAt"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <button type="submit">Lưu</button>
+                    <button type="button" onclick="closeModal()">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let courses = [
+            { id: 1, name: 'React Cơ bản', description: 'Học React từ đầu', instructor: 1, createdAt: '2024-09-28', updatedAt: '2024-09-28' },
+            { id: 2, name: 'Node.js Nâng cao', description: 'Xây dựng API với Node.js', instructor: 2, createdAt: '2024-09-27', updatedAt: '2024-09-27' }
+        ];
+
+        const instructors = [
+            { id: 1, name: 'Nguyễn Văn A' },
+            { id: 2, name: 'Trần Thị B' }
+        ];
+
+        function renderCourses() {
+            const tableBody = document.querySelector('#courseTable tbody');
+            tableBody.innerHTML = '';
+            courses.forEach(course => {
+                const row = `
+                    <tr>
+                        <td>${course.id}</td>
+                        <td>${course.name}</td>
+                        <td>${instructors.find(i => i.id === course.instructor).name}</td>
+                        <td>${course.createdAt}</td>
+                        <td class="action-buttons">
+                            <button onclick="openModal('view', ${course.id})">Xem</button>
+                            <button onclick="openModal('edit', ${course.id})">Sửa</button>
+                            <button onclick="deleteCourse(${course.id})">Xóa</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function openModal(action, courseId = null) {
+            const modal = document.getElementById('courseModal');
+            const form = document.getElementById('courseForm');
+            const title = document.getElementById('modalTitle');
+            const courseDetails = document.getElementById('courseDetails');
+
+            if (action === 'create') {
+                title.textContent = 'Tạo Khóa học Mới';
+                form.reset();
+                courseDetails.style.display = 'none';
+            } else {
+                const course = courses.find(c => c.id === courseId);
+                document.getElementById('courseId').value = course.id;
+                document.getElementById('courseName').value = course.name;
+                document.getElementById('courseDescription').value = course.description;
+                document.getElementById('instructor').value = course.instructor;
+                document.getElementById('createdAt').textContent = course.createdAt;
+                document.getElementById('updatedAt').textContent = course.updatedAt;
+
+                if (action === 'view') {
+                    title.textContent = 'Chi tiết Khóa học';
+                    courseDetails.style.display = 'block';
+                    form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
+                    form.querySelector('button[type="submit"]').style.display = 'none';
+                } else {
+                    title.textContent = 'Chỉnh sửa Khóa học';
+                    courseDetails.style.display = 'none';
+                    form.querySelectorAll('input, select, textarea').forEach(el => el.disabled = false);
+                    form.querySelector('button[type="submit"]').style.display = 'inline-block';
+                }
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('courseModal').style.display = 'none';
+        }
+
+        function saveCourse(event) {
+            event.preventDefault();
+            const form = event.target;
+            const courseId = parseInt(form.querySelector('#courseId').value);
+            const courseName = form.querySelector('#courseName').value;
+            const courseDescription = form.querySelector('#courseDescription').value;
+            const instructor = parseInt(form.querySelector('#instructor').value);
+
+            if (courseId) {
+                // Cập nhật khóa học hiện có
+                const index = courses.findIndex(c => c.id === courseId);
+                courses[index] = { ...courses[index], name: courseName, description: courseDescription, instructor, updatedAt: new Date().toISOString().split('T')[0] };
+            } else {
+                // Tạo khóa học mới
+                const newCourse = {
+                    id: courses.length + 1,
+                    name: courseName,
+                    description: courseDescription,
+                    instructor,
+                    createdAt: new Date().toISOString().split('T')[0],
+                    updatedAt: new Date().toISOString().split('T')[0]
+                };
+                courses.push(newCourse);
+            }
+
+            renderCourses();
+            closeModal();
+        }
+
+        function deleteCourse(courseId) {
+            if (confirm('Bạn có chắc chắn muốn xóa khóa học này?')) {
+                courses = courses.filter(c => c.id !== courseId);
+                renderCourses();
+            }
+        }
+
+        document.getElementById('courseForm').addEventListener('submit', saveCourse);
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('courseModal')) {
+                closeModal();
+            }
+        }
+
+        renderCourses();
+    </script>
+</body>
+</html>
