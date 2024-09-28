@@ -1,49 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="lab1.css"> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Sinh Viên</title>
+    <title>Quản Lý Tài Khoản</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Quản Lý Sinh Viên</h1>
-    </header>
+    <div class="container">
+        <h2>Quản Lý Tài Khoản</h2>
+        <form id="account-form">
+            <!-- Tên đăng nhập -->
+            <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" id="username" placeholder="Nhập tên đăng nhập của bạn" maxlength="255" required>
+                <span class="error-message" id="username-error"></span>
+            </div>
 
-    <main>
-        <section class="form-section">
-            <form id="student-form">
-                <input type="hidden" id="student-id">
-                <input type="text" id="student-name" placeholder="Tên Sinh viên" required>
-                <input type="number" id="student-age" placeholder="Tuổi" required min="1">
-                <input type="text" id="student-major" placeholder="Ngành học" required>
-                <button type="submit" id="submit-btn">Thêm Sinh viên</button>
-            </form>
-        </section>
+            <!-- Mật khẩu -->
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" placeholder="Nhập mật khẩu của bạn" maxlength="255" required>
+                <button type="button" id="toggle-password">Hiển thị</button>
+                <span class="error-message" id="password-error"></span>
+            </div>
 
-        <section class="search-section">
-            <input type="text" id="search" placeholder="Tìm kiếm Sinh viên...">
-        </section>
+            <!-- Địa chỉ Email -->
+            <div class="form-group">
+                <label for="email">Địa chỉ Email</label>
+                <input type="email" id="email" placeholder="Nhập địa chỉ email của bạn" maxlength="255" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
 
-        <section class="table-section">
-            <table id="student-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên</th>
-                        <th>Tuổi</th>
-                        <th>Ngành học</th>
-                        <th>Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody id="student-list">
-                    <!-- Danh sách sinh viên sẽ được hiển thị tại đây -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+            <!-- Họ và Tên -->
+            <div class="form-group">
+                <label for="fullname">Họ và Tên (không bắt buộc)</label>
+                <input type="text" id="fullname" placeholder="Nhập họ và tên của bạn">
+            </div>
+
+            <!-- Vai trò -->
+            <div class="form-group">
+                <label for="role">Vai trò</label>
+                <select id="role" required>
+                    <option value="">Chọn vai trò</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">Người dùng</option>
+                    <!-- Các vai trò khác có thể được thêm vào đây -->
+                </select>
+                <span class="error-message" id="role-error"></span>
+            </div>
+
+            <!-- Ảnh đại diện -->
+            <div class="form-group">
+                <label for="profile-picture">Ảnh đại diện</label>
+                <input type="file" id="profile-picture" accept="image/*">
+                <img id="profile-preview" src="" alt="Xem trước ảnh đại diện" style="display: none;">
+            </div>
+
+            <!-- Ngày tạo tài khoản -->
+            <div class="form-group">
+                <label>Ngày tạo tài khoản</label>
+                <input type="text" id="created-at" readonly value="2024-09-28">
+            </div>
+
+            <!-- Ngày cập nhật lần cuối -->
+            <div class="form-group">
+                <label>Cập nhật lần cuối</label>
+                <input type="text" id="updated-at" readonly value="2024-09-28">
+            </div>
+
+            <!-- Nút hành động -->
+            <button type="submit" id="submit-btn">Tạo Tài khoản</button>
+            <button type="button" id="cancel-btn">Hủy</button>
+        </form>
+    </div>
 
     <script src="script.js"></script>
 </body>
