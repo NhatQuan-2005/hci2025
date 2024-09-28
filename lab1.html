@@ -1,83 +1,260 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="lab1.css"> 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<html lang="vi">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Tài Khoản</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quản lý Sinh viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 255, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1877f2;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1877f2;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #1877f2;
+            border-radius: 4px;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            background-color: #1877f2;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        button#toggle-password {
+            margin-top: -35px;
+            margin-left: 85%;
+            position: relative;
+            width: auto;
+            background-color: #1877f2;
+            color: white;
+            padding: 6px 10px;
+        }
+
+        button#cancel-btn {
+            background-color: #ffffff;
+            color: #1877f2;
+            border: 1px solid #1877f2;
+            padding: 12px;
+            margin-top: 5px;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        #profile-preview {
+            max-width: 100px;
+            margin-top: 10px;
+            border: 2px solid #1877f2;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1877f2;
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <h2>Quản Lý Tài Khoản</h2>
-        <form id="account-form">
-            <!-- Tên đăng nhập -->
+        <h2>Quản lý Sinh viên</h2>
+        <form id="student-form">
             <div class="form-group">
-                <label for="username">Tên đăng nhập</label>
-                <input type="text" id="username" placeholder="Nhập tên đăng nhập của bạn" maxlength="255" required>
-                <span class="error-message" id="username-error"></span>
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <div class="error-message" id="username-error"></div>
             </div>
-
-            <!-- Mật khẩu -->
             <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" placeholder="Nhập mật khẩu của bạn" maxlength="255" required>
-                <button type="button" id="toggle-password">Hiển thị</button>
-                <span class="error-message" id="password-error"></span>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <button type="button" id="toggle-password">Show/Hide</button>
+                <div class="error-message" id="password-error"></div>
             </div>
-
-            <!-- Địa chỉ Email -->
             <div class="form-group">
-                <label for="email">Địa chỉ Email</label>
-                <input type="email" id="email" placeholder="Nhập địa chỉ email của bạn" maxlength="255" required>
-                <span class="error-message" id="email-error"></span>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <div class="error-message" id="email-error"></div>
             </div>
-
-            <!-- Họ và Tên -->
             <div class="form-group">
-                <label for="fullname">Họ và Tên (không bắt buộc)</label>
-                <input type="text" id="fullname" placeholder="Nhập họ và tên của bạn">
+                <label for="fullname">Full Name (optional)</label>
+                <input type="text" id="fullname" placeholder="Enter your full name">
             </div>
-
-            <!-- Vai trò -->
             <div class="form-group">
-                <label for="role">Vai trò</label>
+                <label for="role">Role</label>
                 <select id="role" required>
-                    <option value="">Chọn vai trò</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">Người dùng</option>
-                    <!-- Các vai trò khác có thể được thêm vào đây -->
+                    <option value="">Select role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
                 </select>
-                <span class="error-message" id="role-error"></span>
             </div>
-
-            <!-- Ảnh đại diện -->
             <div class="form-group">
-                <label for="profile-picture">Ảnh đại diện</label>
-                <input type="file" id="profile-picture" accept="image/*">
-                <img id="profile-preview" src="" alt="Xem trước ảnh đại diện" style="display: none;">
+                <label for="profile-picture">Profile Picture</label>
+                <input type="file" id="profile-picture">
+                <img id="profile-preview" src="#" alt="Profile Preview" style="display: none;">
             </div>
-
-            <!-- Ngày tạo tài khoản -->
             <div class="form-group">
-                <label>Ngày tạo tài khoản</label>
-                <input type="text" id="created-at" readonly value="2024-09-28">
+                <label>Account Created At</label>
+                <input type="text" id="created-at" readonly>
             </div>
-
-            <!-- Ngày cập nhật lần cuối -->
             <div class="form-group">
-                <label>Cập nhật lần cuối</label>
-                <input type="text" id="updated-at" readonly value="2024-09-28">
+                <label>Last Updated At</label>
+                <input type="text" id="updated-at" readonly>
             </div>
-
-            <!-- Nút hành động -->
-            <button type="submit" id="submit-btn">Tạo Tài khoản</button>
-            <button type="button" id="cancel-btn">Hủy</button>
+            <button type="submit" id="create-account-btn">Create Account</button>
+            <button type="button" id="cancel-btn">Cancel</button>
         </form>
+
+        <!-- Bảng hiển thị danh sách tài khoản đã tạo -->
+        <table id="account-list">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Các tài khoản sẽ được thêm vào đây -->
+            </tbody>
+        </table>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = 'Hide';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = 'Show';
+            }
+        });
+
+        const profileInput = document.getElementById('profile-picture');
+        const profilePreview = document.getElementById('profile-preview');
+
+        profileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                profilePreview.src = URL.createObjectURL(file);
+                profilePreview.style.display = 'block';
+            }
+        });
+
+        // Lưu trữ danh sách tài khoản đã tạo
+        const accounts = [];
+
+        const form = document.getElementById('student-form');
+        const accountList = document.getElementById('account-list').getElementsByTagName('tbody')[0];
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Lấy giá trị từ các input
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const fullname = document.getElementById('fullname').value || 'N/A';
+            const role = document.getElementById('role').value;
+
+            // Thêm tài khoản vào mảng
+            const account = {
+                username,
+                email,
+                fullname,
+                role
+            };
+
+            accounts.push(account);
+
+            // Cập nhật bảng danh sách tài khoản
+            updateAccountList();
+            form.reset();
+        });
+
+        function updateAccountList() {
+            accountList.innerHTML = '';
+            accounts.forEach((account) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${account.username}</td>
+                    <td>${account.email}</td>
+                    <td>${account.fullname}</td>
+                    <td>${account.role}</td>
+                `;
+                accountList.appendChild(row);
+            });
+        }
+    </script>
 </body>
+
 </html>
