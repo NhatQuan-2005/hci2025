@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 500px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .secondary {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<form id="registration-form">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username." maxlength="255" required>
+        <div class="error" id="username-error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password." maxlength="255" required>
+        <button type="button" onclick="togglePassword()">Show/Hide</button>
+        <div class="error" id="password-error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email." maxlength="255" required>
+        <div class="error" id="email-error"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="full-name">Full Name (optional)</label>
+        <input type="text" id="full-name" placeholder="Enter your full name.">
+    </div>
+
+    <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" required>
+            <option value="">Select a role</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+            <!-- Add more roles as needed -->
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="profile-picture">Profile Picture</label>
+        <input type="file" id="profile-picture" accept="image/*">
+        <div id="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label>Account Created At</label>
+        <div id="account-created-at">2024-09-28</div>
+    </div>
+
+    <div class="form-group">
+        <label>Last Updated At</label>
+        <div id="last-updated-at">N/A</div>
+    </div>
+
+    <div class="button-group">
+        <button type="submit" class="primary" id="submit-button" disabled>Create Account</button>
+        <button type="button" class="secondary" onclick="cancel()">Cancel</button>
+    </div>
+</form>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+    }
+
+    document.getElementById('registration-form').addEventListener('input', function() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+
+        // Example validation checks (these would be replaced with actual checks)
+        document.getElementById('username-error').textContent = username ? '' : 'Username is required.';
+        document.getElementById('email-error').textContent = email.includes('@') ? '' : 'Invalid email format.';
+
+        // Enable submit button if all validations pass (update this logic as needed)
+        const isValid = username && email.includes('@');
+        document.getElementById('submit-button').disabled = !isValid;
+    });
+
+    function cancel() {
+        // Logic to cancel the form submission
+        window.history.back();
+    }
+
+    document.getElementById('profile-picture').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgPreview = document.createElement('img');
+                imgPreview.src = e.target.result;
+                imgPreview.style.maxWidth = '100px';
+                imgPreview.style.marginTop = '10px';
+                document.getElementById('image-preview').innerHTML = '';
+                document.getElementById('image-preview').appendChild(imgPreview);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+</body>
+</html>
