@@ -1,49 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Sinh Viên</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quản Lý Lớp Học</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Quản Lý Sinh Viên</h1>
-    </header>
+    <h1>Quản Lý Lớp Học</h1>
 
-    <main>
-        <section class="form-section">
-            <form id="student-form">
-                <input type="hidden" id="student-id">
-                <input type="text" id="student-name" placeholder="Tên Sinh viên" required>
-                <input type="number" id="student-age" placeholder="Tuổi" required min="1">
-                <input type="text" id="student-major" placeholder="Ngành học" required>
-                <button type="submit" id="submit-btn">Thêm Sinh viên</button>
-            </form>
-        </section>
+    <!-- Form thêm lớp học -->
+    <div id="form-add-class">
+        <h2>Thêm Lớp Học</h2>
+        <input type="text" id="class-name" placeholder="Tên lớp học">
+        <input type="text" id="class-id" placeholder="Mã lớp học">
+        <button onclick="addClass()">Thêm Lớp</button>
+    </div>
 
-        <section class="search-section">
-            <input type="text" id="search" placeholder="Tìm kiếm Sinh viên...">
-        </section>
+    <!-- Form tìm kiếm -->
+    <div id="form-search-class">
+        <h2>Tìm kiếm lớp học</h2>
+        <input type="text" id="search-term" placeholder="Tìm lớp học">
+        <button onclick="searchClass()">Tìm kiếm</button>
+    </div>
 
-        <section class="table-section">
-            <table id="student-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Tên</th>
-                        <th>Tuổi</th>
-                        <th>Ngành học</th>
-                        <th>Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody id="student-list">
-                    <!-- Danh sách sinh viên sẽ được hiển thị tại đây -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <!-- Bảng danh sách lớp học -->
+    <table id="class-list">
+        <thead>
+            <tr>
+                <th>Mã lớp</th>
+                <th>Tên lớp</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Các lớp học sẽ được thêm vào đây -->
+        </tbody>
+    </table>
 
     <script src="script.js"></script>
 </body>
