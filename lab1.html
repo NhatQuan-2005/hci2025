@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Giao Diện Menu</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="home"><a href="#" id="home-link">Home</a></li>
+                <li class="about"><a href=https://www.topcv.vn/sua-cv/8e70135f1a0dee19081e732cc68cd198?ta_source=EditCVInManagerCV target="_blank">About</a></li> <!-- Link đến tệp CV PDF -->
+                <li class="labs">
+                    <a href="#" class="labs-toggle">Labs</a>
+                    <ul class="labs-dropdown">
+                        <li><a href="#labs1">Labs 1</a></li>
+                        <li><a href="#labs2">Labs 2</a></li>
+                        <li><a href="#labs3">Labs 3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>Chào mừng đến với trang Home!</h1>
+            <p>Đây là nội dung của trang Home.</p>
+
+            <!-- Biểu mẫu nhập tên người dùng, mật khẩu, email, nút Tạo tài khoản và Hủy -->
+            <div id="user-form" style="display: none;">
+                <form id="account-form">
+                    <label for="username">Tên người dùng:</label>
+                    <input type="text" id="username" name="username" placeholder="Nhập tên người dùng của bạn" maxlength="255" required><br><br>
+
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu của bạn" maxlength="255" required><br><br>
+
+                    <label for="email">Địa chỉ email:</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập email của bạn" maxlength="255" required><br><br>
+
+                    <button type="submit">Tạo tài khoản</button>
+                    <button type="button" id="cancel-btn">Hủy</button>
+                </form>
+            </div>
+        </section>
+        <section id="labs">
+            <h1>Khám phá Labs</h1>
+            <p>Đây là nội dung của trang Labs.</p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Dòng này đã được loại bỏ -->
+    </footer>
+
+    <script>
+        // JavaScript để hiển thị form khi nhấn vào "Home"
+        document.getElementById('home-link').addEventListener('click', function(e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+
+            const form = document.getElementById('user-form');
+            if (form.style.display === "none") {
+                form.style.display = "block"; // Hiển thị form nếu nó đang bị ẩn
+            } else {
+                form.style.display = "none"; // Ẩn form nếu nó đang hiển thị
+            }
+        });
+
+        // Thêm chức năng nút "Hủy" để ẩn form
+        document.getElementById('cancel-btn').addEventListener('click', function() {
+            document.getElementById('user-form').style.display = 'none'; // Ẩn form khi nhấn nút "Hủy"
+        });
+
+        // Hiển thị dropdown khi nhấn vào Labs
+        document.querySelector('.labs-toggle').addEventListener('click', function(e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định
+            const dropdown = document.querySelector('.labs-dropdown');
+            dropdown.classList.toggle('show'); // Thay đổi trạng thái hiển thị
+        });
+    </script>
+</body>
+</html>

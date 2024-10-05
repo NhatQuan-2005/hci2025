@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    color: white;
+}
+
+nav {
+    position: absolute; /* Đặt vị trí của nav */
+    top: 10px; /* Khoảng cách từ trên cùng */
+    left: 10px; /* Khoảng cách từ bên trái */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Sắp xếp các mục theo hàng */
+}
+
+nav ul li {
+    margin-right: 10px; /* Khoảng cách giữa các mục */
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+/* Màu sắc cho từng thanh */
+nav ul li.home {
+    background-color: #4CAF50; /* Màu xanh lá cây */
+}
+
+nav ul li.about {
+    background-color: #2196F3; /* Màu xanh dương */
+}
+
+nav ul li.labs {
+    background-color: #FF5722; /* Màu cam */
+}
+
+nav ul li a:hover {
+    opacity: 0.8; /* Hiệu ứng hover cho các thanh menu */
+}
+
+nav ul .labs-dropdown {
+    display: none; /* Ẩn menu con */
+    position: absolute; /* Đặt menu con ở vị trí tuyệt đối */
+    top: 100%; /* Xuống dưới menu cha */
+    left: 0;
+    background-color: #FF5722; /* Màu nền giống với menu cha */
+    z-index: 1; /* Đảm bảo menu con nằm trên các thành phần khác */
+}
+
+nav ul .labs-dropdown.show {
+    display: block; /* Hiện menu con khi có lớp 'show' */
+}
+
+nav ul .labs-dropdown li {
+    margin: 0; /* Không có khoảng cách giữa các mục con */
+}
+
+main {
+    padding: 80px 20px 20px; /* Thêm khoảng cách trên để tránh đè lên menu */
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="button"] {
+    background-color: #f44336; /* Màu đỏ cho nút "Hủy" */
+}
+
+button:hover {
+    opacity: 0.8;
+}
