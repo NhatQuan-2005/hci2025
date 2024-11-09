@@ -81,17 +81,24 @@
             justify-content: space-between;
             flex-wrap: wrap;
             margin-top: 50px;
-            gap: 20px; /* khoảng cách giữa các phần tử */
+            gap: 20px;
             padding: 0 20px;
         }
 
         .member {
             width: 18%;
-            height: 400px;
+            height: 500px;
             border-radius: 10px;
             position: relative;
             box-shadow: -4px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px -4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             transition: all 0.3s ease;
+        }
+
+        .member img {
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
         }
 
         .member:hover {
@@ -103,9 +110,8 @@
             text-align: center;
         }
 
-        /* Đổi màu tên thành viên thành màu đen */
         .info-member h2 {
-            color: black;  /* Màu tên thành viên là đen */
+            color: black;
             font-size: 20px;
             margin-bottom: 10px;
         }
