@@ -154,7 +154,8 @@
         <div class="project-tabs">
             <button class="tab-link active" onclick="openTab(event, 'Requirement')">Requirement</button>
             <button class="tab-link" onclick="openTab(event, 'Design')">Design</button>
-            <button class="tab-link" onclick="openTab(event, 'Implementation')">Implementation</button>
+            <!-- Implementation tab now links to the implementation.html page -->
+            <a href="implementation.html"><button class="tab-link">Implementation</button></a>
         </div>
 
         <div id="Requirement" class="tab-content active">
@@ -178,9 +179,13 @@
             const tabContents = document.querySelectorAll(".tab-content");
             const tabLinks = document.querySelectorAll(".tab-link");
 
+            // Hide all tab content
             tabContents.forEach(content => content.classList.remove("active"));
+
+            // Remove 'active' class from all buttons
             tabLinks.forEach(link => link.classList.remove("active"));
 
+            // Show the clicked tab's content and add 'active' to the clicked button
             document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
