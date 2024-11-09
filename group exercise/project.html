@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - Group 12</title>
+    <style>
+        /* Reset CSS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #00d1b2;
+        }
+
+        /* Container and Tab Styling */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Tabs Styling */
+        .project-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .project-tabs button {
+            flex: 1;
+            padding: 15px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f9fafb;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            outline: none;
+        }
+
+        .project-tabs button:hover,
+        .project-tabs button.active {
+            background-color: #00d1b2;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Tab Content Styling */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            animation: fadeIn 0.5s ease;
+            text-align: left;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar ul li {
+                margin: 0 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .project-tabs button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">GROUP 12</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="project.html" class="active">Project</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Project Overview</h1>
+        <p>Welcome to the project page of Group 12. Explore the tabs below to see our progress.</p>
+
+        <div class="project-tabs">
+            <button class="tab-link active" onclick="openTab(event, 'Requirement')">Requirement</button>
+            <button class="tab-link" onclick="openTab(event, 'Design')">Design</button>
+            <button class="tab-link" onclick="openTab(event, 'Implementation')">Implementation</button>
+        </div>
+
+        <div id="Requirement" class="tab-content active">
+            <h2>Requirement</h2>
+            <p>Here are the requirements for our project. We focus on ensuring user-friendly interaction and efficiency...</p>
+        </div>
+
+        <div id="Design" class="tab-content">
+            <h2>Design</h2>
+            <p>Our design process prioritizes simplicity and user engagement, using intuitive layouts and modern aesthetics...</p>
+        </div>
+
+        <div id="Implementation" class="tab-content">
+            <h2>Implementation</h2>
+            <p>The implementation phase includes coding, testing, and deploying features following agile methodologies...</p>
+        </div>
+    </div>
+
+    <script>
+        function openTab(event, tabName) {
+            const tabContents = document.querySelectorAll(".tab-content");
+            const tabLinks = document.querySelectorAll(".tab-link");
+
+            tabContents.forEach(content => content.classList.remove("active"));
+            tabLinks.forEach(link => link.classList.remove("active"));
+
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        // Display default tab
+        document.getElementById("Requirement").style.display = "block";
+    </script>
+
+</body>
+</html>
