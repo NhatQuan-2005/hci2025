@@ -1,239 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            padding: 10px 20px;
-        }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 20px;
+      }
 
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
 
-        .navbar ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+      .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
 
-        .navbar ul li {
-            margin: 0 15px;
-        }
+      .navbar ul li {
+        margin: 0 15px;
+      }
 
-        .navbar ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-        }
+      .navbar ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+      }
 
-        .navbar ul li a:hover {
-            color: #ccc;
-        }
+      .navbar ul li a:hover {
+        color: #ccc;
+      }
 
-        .navbar ul li a.active {
-            font-weight: bold;
-        }
+      .navbar ul li a.active {
+        font-weight: bold;
+      }
 
-        .navbar .project-btn {
-            background-color: #363ff4; 
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-        }
+      .navbar .project-btn {
+        background-color: #363ff4;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+      }
 
-        .navbar .project-btn:hover {
-            background-color: #2f3ad3; 
-        }
+      .navbar .project-btn:hover {
+        background-color: #2f3ad3;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
 
-        hr {
-            width: 50%;
-            border-top: 2px solid #ddd;
-            margin: 20px auto;
-        }
+      hr {
+        width: 50%;
+        border-top: 2px solid #ddd;
+        margin: 20px auto;
+      }
 
-        .profile-card {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 50px;
-            gap: 20px;
-            padding: 0 20px;
-        }
+      .profile-card {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        gap: 20px;
+        padding: 0 20px;
+      }
 
-        .member {
-            width: 18%;
-            height: 500px;
-            border-radius: 10px;
-            position: relative;
-            box-shadow: -4px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px -4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            transition: all 0.3s ease;
-        }
+      .member {
+        width: 18%;
+        height: 500px;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: -4px 4px 8px 0 rgba(0, 0, 0, 0.2),
+          4px -4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: all 0.3s ease;
+      }
 
-        .member img {
-            width: 100%;
-            height: 50%;
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-        }
+      .member img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
 
-        .member:hover {
-            box-shadow: 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
+      .member:hover {
+        box-shadow: 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
 
-        .info-member {
-            margin: 10px;
-            text-align: left;
-        }
+      .info-member {
+        margin: 10px;
+        text-align: left;
+      }
 
-        .info-member h2 {
-            color: black;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+      .info-member h2 {
+        color: black;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
 
-        .info-member span {
-            font-weight: 600;
-            color: #6c6969;
-        }
+      .info-member span {
+        font-weight: 600;
+        color: #6c6969;
+      }
 
-        .info-member i a {
-            display: block;
-            text-decoration: none;
-            color: black;
-            font-weight: 600;
-            margin-top: 10px;
-        }
+      .info-member i a {
+        display: block;
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+        margin-top: 10px;
+      }
 
-        .info-member i a:hover {
-            text-decoration: underline;
-        }
+      .info-member i a:hover {
+        text-decoration: underline;
+      }
 
-        .button {
-            text-decoration: none;
-            background: black;
-            color: aliceblue;
-            border-radius: 20px;
-            padding: 10px;
-            width: 80%;
-            text-align: center;
-            position: absolute;
-            bottom: 20px;
-            left: 16px;
-            right: 10px;
-        }
+      .button {
+        text-decoration: none;
+        background: black;
+        color: aliceblue;
+        border-radius: 20px;
+        padding: 10px;
+        width: 80%;
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        left: 16px;
+        right: 10px;
+      }
 
-        .button:hover {
-            background-color: #6c6969;
-        }
+      .button:hover {
+        background-color: #6c6969;
+      }
 
-        img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-        }
-
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="logo">GROUP 12</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#">Technical</a></li>
-            <li><a href="#">Group Diary</a></li>
-            <li><a href="#" class="active">Project</a></li>
-            <li><a href="#">Style Guide</a></li>
-            <li><a href="#">Result</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <a href="#" class="project-btn">Go to project</a>
+      <div class="logo">GROUP 12</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Technical</a></li>
+        <li><a href="group-diary.html">Group Diary</a></li>
+        <li><a href="project.html" class="active">Project</a></li>
+        <li><a href="#">Style Guide</a></li>
+        <li><a href="#">Result</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <a href="#" class="project-btn">Go to project</a>
     </nav>
 
     <h2>Meet Our Team</h2>
     <hr />
     <div class="profile-card">
-        <div class="member">
-            <img src="./image/Bùi Văn Hiếu.png" alt="Bùi Văn Hiếu" />
-            <div class="info-member">
-                <h3>Bùi Văn Hiếu</h3>
-                <span>Member</span>
-                <p>MSSV: 23130102</p>
-                <i><a href="mailto:23130102@st.hcmuaf.edu.vn" target="_blank">23130102@st.hcmuaf.edu.vn</a></i>
-                <a class="button" href="mailto:23130102@st.hcmuaf.edu.vn" target="_blank">Contact</a>
-            </div>
+      <div class="member">
+        <img src="./image/Bùi Văn Hiếu.png" alt="Bùi Văn Hiếu" />
+        <div class="info-member">
+          <h3>Bùi Văn Hiếu</h3>
+          <span>Member</span>
+          <p>MSSV: 23130102</p>
+          <i
+            ><a href="mailto:23130102@st.hcmuaf.edu.vn" target="_blank"
+              >23130102@st.hcmuaf.edu.vn</a
+            ></i
+          >
+          <a
+            class="button"
+            href="mailto:23130102@st.hcmuaf.edu.vn"
+            target="_blank"
+            >Contact</a
+          >
         </div>
+      </div>
 
-        <div class="member">
-            <img src="./image/Phạm Hoàng Duy Thức.png" alt="Phạm Hoàng Duy Thức" />
-            <div class="info-member">
-                <h3>Phạm Hoàng Duy Thức</h3>
-                <span>Member</span>
-                <p>MSSV: 23130324</p>
-                <i><a href="mailto:dreamerforwork@gmail.com" target="_blank">dreamerforwork@gmail.com</a></i>
-                <a class="button" href="https://github.com/dthucmer0729" target="_blank">Contact</a>
-            </div>
+      <div class="member">
+        <img src="./image/Phạm Hoàng Duy Thức.png" alt="Phạm Hoàng Duy Thức" />
+        <div class="info-member">
+          <h3>Phạm Hoàng Duy Thức</h3>
+          <span>Member</span>
+          <p>MSSV: 23130324</p>
+          <i
+            ><a href="mailto:dreamerforwork@gmail.com" target="_blank"
+              >dreamerforwork@gmail.com</a
+            ></i
+          >
+          <a
+            class="button"
+            href="https://github.com/dthucmer0729"
+            target="_blank"
+            >Contact</a
+          >
         </div>
+      </div>
 
-        <div class="member">
-            <img src="./image/Nguyễn Trần Nhật Quân.jpg" alt="Nguyễn Trần Nhật Quân" />
-            <div class="info-member">
-                <h3>Nguyễn Trần Nhật Quân</h3>
-                <span>Leader</span>
-                <p>MSSV: 23130257</p>
-                <i><a href="mailto:23130257@st.hcmuaf.edu.vn" target="_blank">23130257@st.hcmuaf.edu.vn</a></i>
-                <a class="button" href="mailto:23130257@st.hcmuaf.edu.vn" target="_blank">Contact</a>
-            </div>
+      <div class="member">
+        <img
+          src="./image/Nguyễn Trần Nhật Quân.jpg"
+          alt="Nguyễn Trần Nhật Quân"
+        />
+        <div class="info-member">
+          <h3>Nguyễn Trần Nhật Quân</h3>
+          <span>Leader</span>
+          <p>MSSV: 23130257</p>
+          <i
+            ><a href="mailto:23130257@st.hcmuaf.edu.vn" target="_blank"
+              >23130257@st.hcmuaf.edu.vn</a
+            ></i
+          >
+          <a
+            class="button"
+            href="mailto:23130257@st.hcmuaf.edu.vn"
+            target="_blank"
+            >Contact</a
+          >
         </div>
+      </div>
 
-        <div class="member">
-            <img src="./image/Phạm Nhật Khang.png" alt="Phạm Nhật Khang" />
-            <div class="info-member">
-                <h3>Phạm Nhật Khang</h3>
-                <span>Member</span>
-                <p>MSSV: 23130145</p>
-                <i><a href="mailto:23130145@st.hcmuaf.edu.vn" target="_blank">23130145@st.hcmuaf.edu.vn</a></i>
-                <a class="button" href="mailto:23130145@st.hcmuaf.edu.vn" target="_blank">Contact</a>
-            </div>
+      <div class="member">
+        <img src="./image/Phạm Nhật Khang.png" alt="Phạm Nhật Khang" />
+        <div class="info-member">
+          <h3>Phạm Nhật Khang</h3>
+          <span>Member</span>
+          <p>MSSV: 23130145</p>
+          <i
+            ><a href="mailto:23130145@st.hcmuaf.edu.vn" target="_blank"
+              >23130145@st.hcmuaf.edu.vn</a
+            ></i
+          >
+          <a
+            class="button"
+            href="mailto:23130145@st.hcmuaf.edu.vn"
+            target="_blank"
+            >Contact</a
+          >
         </div>
+      </div>
 
-        <div class="member">
-            <img src="./image/Võ Lê Hương Quỳnh.png" alt="Võ Lê Hương Quỳnh" />
-            <div class="info-member">
-                <h3>Võ Lê Hương Quỳnh</h3>
-                <span>Member</span>
-                <p>MSSV: 23130267</p>
-                <i><a href="mailto:23130267@st.hcmuaf.edu.vn" target="_blank">23130267@st.hcmuaf.edu.vn</a></i>
-                <a class="button" href="https://quynh106.github.io/my-web/" target="_blank">Contact</a>
-            </div>
+      <div class="member">
+        <img src="./image/Võ Lê Hương Quỳnh.png" alt="Võ Lê Hương Quỳnh" />
+        <div class="info-member">
+          <h3>Võ Lê Hương Quỳnh</h3>
+          <span>Member</span>
+          <p>MSSV: 23130267</p>
+          <i
+            ><a href="mailto:23130267@st.hcmuaf.edu.vn" target="_blank"
+              >23130267@st.hcmuaf.edu.vn</a
+            ></i
+          >
+          <a
+            class="button"
+            href="https://quynh106.github.io/my-web/"
+            target="_blank"
+            >Contact</a
+          >
         </div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
