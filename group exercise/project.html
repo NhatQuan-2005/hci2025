@@ -53,11 +53,23 @@
         .navbar ul li a:hover {
             color: #00d1b2;
         }
+        .project-btn {
+            background-color: #363ff4;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .project-btn:hover {
+            background-color: #2f3ad3;
+        }
 
         /* Container and Tab Styling */
         .container {
-            max-width: 800px;
-            margin: 50px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -134,6 +146,53 @@
                 padding: 10px;
             }
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #00d1b2;
+            color: white;
+        }
+
+        table input[type="text"] {
+            width: 100%;
+            border: none;
+            text-align: center;
+            background-color: transparent;
+        }
+
+        table input[type="text"]:focus {
+            outline: none;
+            background-color: #e6f7ff;
+        }
+
+        table textarea {
+            width: 100%;
+            border: none;
+            resize: vertical;
+            text-align: center;
+            background-color: transparent;
+            overflow: hidden;
+            min-height: 30px;
+        }
+
+        table textarea:focus {
+            outline: none;
+            background-color: #e6f7ff;
+        }
+
     </style>
 </head>
 <body>
@@ -143,8 +202,14 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="#">Technical</a></li>
+            <li><a href="group-diary.html">Group Diary</a></li>
             <li><a href="project.html" class="active">Project</a></li>
+            <li><a href="#">Style Guide</a></li>
+            <li><a href="#">Result</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
+        <a href="project.html" class="project-btn">Go to project</a>
     </nav>
 
     <div class="container">
@@ -154,15 +219,67 @@
         <div class="project-tabs">
             <button class="tab-link active" onclick="openTab(event, 'Requirement')">Requirement</button>
             <button class="tab-link" onclick="openTab(event, 'Design')">Design</button>
-            <!-- Implementation tab now links to the implementation.html page -->
-            <a href="implementation.html"><button class="tab-link">Implementation</button></a>
+            <button class="tab-link" onclick="openTab(event, 'Implementation')">Implementation</button>
         </div>
 
         <div id="Requirement" class="tab-content active">
             <h2>Requirement</h2>
-            <p>Here are the requirements for our project. We focus on ensuring user-friendly interaction and efficiency...</p>
+            <table id="editableTable">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Functional</th>
+                        <th>Designer</th>
+                        <th>Performer</th>
+                        <th>Intend time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id>23130145</td>
+                        <td>Đăng nhập, Quản lý tài khoản</td>
+                        <td>Phạm Nhật Khang</td>
+                        <td><div>Phạm Nhật Khang</div></td>
+                        <td>2 TUẦN</td>
+                        <td>Đang hoàn thiện</td>
+                    </tr>
+                    <tr>
+                        <td>23130102</td>
+                        <td>Quản lý sinh viên, Quản lý lớp học</td>
+                        <td>Bùi Văn Hiếu</td>
+                        <td>Bùi Văn Hiếu</td>
+                        <td>2 TUẦN</td>
+                        <td>Đang hoàn thiện</td>
+                    </tr>
+                    <tr>
+                        <td>23130324</td>
+                        <td>Quản lý môn học, Quản lý lịch học</td>
+                        <td>Phạm Hoàng Duy Thức</td>
+                        <td>Phạm Hoàng Duy Thức</td>
+                        <td>2 TUẦN</td>
+                        <td>Đang hoàn thiện</td>
+                    </tr>
+                    <tr>
+                        <td>23130267</td>
+                        <td>Quản lý điểm, Báo cáo và thống kê</td>
+                        <td>Võ Lê Hương Quỳnh</td>
+                        <td>Võ Lê Hương Quỳnh</td>
+                        <td>2 TUẦN</td>
+                        <td>Đang hoàn thiện</td>
+                    </tr>
+                    <tr>
+                        <td>23130257</td>
+                        <td>Hỗ trợ trực tuyến, Phản hồi và đánh giá</td>
+                        <td>Nguyễn Trần Nhật Quân</td>
+                        <td>Nguyễn Trần Nhật Quân</td>
+                        <td>2 TUẦN</td>
+                        <td>Đang hoàn thiện</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
+        
         <div id="Design" class="tab-content">
             <h2>Design</h2>
             <p>Our design process prioritizes simplicity and user engagement, using intuitive layouts and modern aesthetics...</p>
@@ -179,19 +296,37 @@
             const tabContents = document.querySelectorAll(".tab-content");
             const tabLinks = document.querySelectorAll(".tab-link");
 
-            // Hide all tab content
             tabContents.forEach(content => content.classList.remove("active"));
+            tabContents.forEach(content => content.style.display = "none");
 
-            // Remove 'active' class from all buttons
             tabLinks.forEach(link => link.classList.remove("active"));
 
-            // Show the clicked tab's content and add 'active' to the clicked button
+            document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
             event.currentTarget.classList.add("active");
         }
 
-        // Display default tab
         document.getElementById("Requirement").style.display = "block";
+
+        function addRow() {
+            const table = document.getElementById("editableTable").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            newRow.innerHTML = `
+                <td><textarea placeholder="Number"></textarea></td>
+                <td><textarea placeholder="Functional"></textarea></td>
+                <td><textarea placeholder="Designer"></textarea></td>
+                <td><textarea placeholder="Performer"></textarea></td>
+                <td><textarea placeholder="Intend time"></textarea></td>
+                <td><textarea placeholder="Status"></textarea></td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            `;
+        }
+
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
     </script>
 
 </body>
