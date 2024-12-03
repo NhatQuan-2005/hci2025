@@ -197,6 +197,85 @@
             background-color: #e6f7ff;
         }
 
+
+
+
+        /* tab design */
+
+        /* Nút xem hình */
+    .view-image-btn {
+      padding: 5px 10px;
+      background-color: #00d1b2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .view-image-btn:hover {
+      background-color: #339900;
+    }
+
+    /* Modal hiển thị hình ảnh */
+    #image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #image-modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* .modal-content img {
+      max-width: 100%;
+      height: auto;
+    } */
+
+    .modal-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Đảm bảo hình ảnh không bị méo */
+    width: 700px; /* Đặt kích thước ô vuông */
+    height: 500px;
+}
+
+
+    #close-modal {
+  display: block;
+  margin: 20px auto 0; /* Thêm khoảng cách phía trên */
+  background-color: #ff5c5c;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+    #close-modal:hover {
+      background-color: #e60000;
+    }
+
+    /* Làm mờ nền khi mở modal */
+    .blur {
+      filter: blur(5px);
+    }
     </style>
 </head>
 <body>
@@ -285,9 +364,56 @@
         </div>
         
         <div id="Design" class="tab-content">
-            <h2>Design</h2>
-            <p>Our design process prioritizes simplicity and user engagement, using intuitive layouts and modern aesthetics...</p>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Họ và Tên</th>
+                    <th>Nhiệm vụ</th>
+                    <th>Trạng thái</th>
+                    <th>Hình ảnh</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Phạm Nhật Khang</td>
+                    <td>Đăng nhập, Quản lý tài khoản</td>
+                    <td>Hoàn thành</td>
+                    <td><button class="view-image-btn" data-image="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\btnhom_Login.png">Xem</button></td>
+                  </tr>
+                  <tr>
+                    <td>Bùi Văn Hiếu</td>
+                    <td>Quản lý sinh viên, Quản lý lớp học</td>
+                    <td>Hoàn thành</td>
+                    <td><button class="view-image-btn" data-image="image1.png">Xem</button></td>
+                  </tr>
+                  <tr>
+                    <td>Phạm Hoàng Duy Thức</td>
+                    <td>Quản lý môn học, Quản lý lịch học</td>
+                    <td>Hoàn thành</td>
+                    <td><button class="view-image-btn" data-image="image1.png">Xem</button></td>
+                  </tr>
+                  <tr>
+                    <td>Võ lê Hương Quỳnh</td>
+                    <td>Quản lý điểm, Báo cáo và thống kê</td>
+                    <td>Hoàn thành</td>
+                    <td><button class="view-image-btn" data-image="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\QLĐ.png">Xem</button></td>
+                  </tr>
+                  <tr>
+                    <td>Nguyễn Trần Nhật Quân</td>
+                    <td>Hỗ trợ trực tuyến, Phản hồi và đánh giá</td>
+                    <td>Hoàn thành</td>
+                    <td><button class="view-image-btn" data-image="image1.png">Xem</button></td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
+
+        <div id="image-modal" class="hidden">
+            <div class="modal-content">
+              <img id="modal-image" src="" alt="Hình ảnh">
+              <button id="close-modal">Đóng</button>
+            </div>
+          </div>
 
         <div id="Implementation" class="tab-content">
             <h2>Implementation</h2>
@@ -391,6 +517,65 @@
             const row = button.parentNode.parentNode;
             row.parentNode.removeChild(row);
         }
+
+        function openTab(event, tabName) {
+            const tabContents = document.querySelectorAll(".tab-content");
+            const tabLinks = document.querySelectorAll(".tab-link");
+
+            tabContents.forEach(content => content.classList.remove("active"));
+            tabContents.forEach(content => content.style.display = "none");
+
+            tabLinks.forEach(link => link.classList.remove("active"));
+
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        document.getElementById("Requirement").style.display = "block";
+
+        function addRow() {
+            const table = document.getElementById("editableTable").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            newRow.innerHTML = `
+                <td><textarea placeholder="Number"></textarea></td>
+                <td><textarea placeholder="Functional"></textarea></td>
+                <td><textarea placeholder="Designer"></textarea></td>
+                <td><textarea placeholder="Performer"></textarea></td>
+                <td><textarea placeholder="Intend time"></textarea></td>
+                <td><textarea placeholder="Status"></textarea></td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            `;
+        }
+
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // tab design
+        document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".view-image-btn");
+      const modal = document.getElementById("image-modal");
+      const modalImage = document.getElementById("modal-image");
+      const closeModal = document.getElementById("close-modal");
+      const tableContainer = document.querySelector(".table-container");
+
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          const imageUrl = button.getAttribute("data-image");
+          modalImage.src = imageUrl;
+          modal.classList.remove("hidden");
+          tableContainer.classList.add("blur");
+        });
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        tableContainer.classList.remove("blur");
+      });
+    });
     </script>
 
 </body>
