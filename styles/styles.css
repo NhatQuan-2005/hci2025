@@ -1,0 +1,212 @@
+/* Tổng quát */
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(120deg, #004d00, #006600);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #ffffff;
+}
+
+.container {
+  position: relative;
+  width: 900px;
+  height: 550px;
+  background: #006400; /* Xanh lá đậm */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Các form */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+  background: #ffffff; /* Nền trắng bên trong */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+}
+
+.sign-in-container {
+  left: 0;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  transform: translateX(100%);
+  z-index: 1;
+}
+
+/* Nút trong form */
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #004d00;
+  border-radius: 30px;
+  background: transparent;
+  color: #004d00;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+button:hover {
+  background: #004d00;
+  color: #ffffff;
+}
+
+/* Trường nhập liệu */
+input {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin: 10px 0;
+  width: 100%;
+  outline: none;
+  background: #ffffff;
+  color: #000000;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #777777;
+}
+
+input:focus {
+  border-color: #004d00;
+  box-shadow: 0 0 8px rgba(0, 128, 0, 0.5);
+}
+
+/* Overlay */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 100;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay {
+  background: linear-gradient(120deg, #004d00, #008000); /* Chuyển sắc xanh lá */
+  color: #ffffff;
+  position: relative;
+  height: 100%;
+  width: 200%;
+  left: -100%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+/* Nút chuyển đổi */
+.ghost {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.ghost:hover {
+  background: #ffffff;
+  color: #004d00;
+}
+
+/* Form container */
+form {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+form h1 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #004d00;
+}
+
+form span {
+  font-size: 14px;
+  color: #777777;
+  margin: 20px 0;
+}
+
+/* Mạng xã hội */
+.social-container {
+  margin: 20px 0;
+}
+
+.social-container a {
+  border: 1px solid #004d00;
+  border-radius: 50%;
+  color: #004d00;
+  display: inline-block;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 5px;
+  width: 40px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.social-container a:hover {
+  background: #004d00;
+  color: #ffffff;
+}
+
+/* Hiệu ứng khi chuyển đổi */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
