@@ -1,508 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project - Group 12</title>
     <style>
-        /* Reset CSS */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      /* Reset CSS */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9fafb;
-            color: #333;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9fafb;
+        color: #333;
+      }
 
-        /* Navbar Styling */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            padding: 15px 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+      /* Navbar Styling */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 15px 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-        }
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+      }
 
-        .navbar ul {
-            list-style: none;
-            display: flex;
-        }
+      .navbar ul {
+        list-style: none;
+        display: flex;
+      }
 
+      .navbar ul li {
+        margin: 0 15px;
+      }
+
+      .navbar ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s;
+      }
+
+      .navbar ul li a:hover {
+        color: #00d1b2;
+      }
+      .project-btn {
+        background-color: #363ff4;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .project-btn:hover {
+        background-color: #2f3ad3;
+      }
+
+      /* Container and Tab Styling */
+      .container {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      /* Tabs Styling */
+      .project-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .project-tabs button {
+        flex: 1;
+        padding: 15px;
+        font-size: 16px;
+        color: #333;
+        background-color: #f9fafb;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        outline: none;
+      }
+
+      .project-tabs button:hover,
+      .project-tabs button.active {
+        background-color: #00d1b2;
+        color: white;
+        font-weight: bold;
+      }
+
+      /* Tab Content Styling */
+      .tab-content {
+        display: none;
+        padding: 20px;
+        border-top: 1px solid #ddd;
+        animation: fadeIn 0.5s ease;
+        text-align: left;
+      }
+
+      #Implementation table td,
+      #Implementation table th {
+        text-align: left;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Fade-in Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .navbar ul li {
-            margin: 0 15px;
+          margin: 0 10px;
         }
-
-        .navbar ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-
-        .navbar ul li a:hover {
-            color: #00d1b2;
-        }
-        .project-btn {
-            background-color: #363ff4;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .project-btn:hover {
-            background-color: #2f3ad3;
-        }
-
-        /* Container and Tab Styling */
         .container {
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: center;
+          padding: 15px;
         }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        /* Tabs Styling */
-        .project-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-
         .project-tabs button {
-            flex: 1;
-            padding: 15px;
-            font-size: 16px;
-            color: #333;
-            background-color: #f9fafb;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            outline: none;
+          font-size: 14px;
+          padding: 10px;
         }
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
 
-        .project-tabs button:hover,
-        .project-tabs button.active {
-            background-color: #00d1b2;
-            color: white;
-            font-weight: bold;
-        }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
 
-        /* Tab Content Styling */
-        .tab-content {
-            display: none;
-            padding: 20px;
-            border-top: 1px solid #ddd;
-            animation: fadeIn 0.5s ease;
-            text-align: left;
-        }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
 
-        #Implementation table td, #Implementation table th {
-            text-align: left; 
-        }
+      th {
+        background-color: #00d1b2;
+        color: white;
+      }
 
-        .tab-content.active {
-            display: block;
-        }
+      table input[type="text"] {
+        width: 100%;
+        border: none;
+        text-align: center;
+        background-color: transparent;
+      }
 
-        /* Fade-in Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+      table input[type="text"]:focus {
+        outline: none;
+        background-color: #e6f7ff;
+      }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar ul li {
-                margin: 0 10px;
-            }
-            .container {
-                padding: 15px;
-            }
-            .project-tabs button {
-                font-size: 14px;
-                padding: 10px;
-            }
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
+      table textarea {
+        width: 100%;
+        border: none;
+        resize: vertical;
+        text-align: center;
+        background-color: transparent;
+        overflow: hidden;
+        min-height: 30px;
+      }
 
-        table, th, td {
-            border: 1px solid #ddd;
-        }
+      table textarea:focus {
+        outline: none;
+        background-color: #e6f7ff;
+      }
 
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
+      /* tab design */
 
-        th {
-            background-color: #00d1b2;
-            color: white;
-        }
+      .view-image-btn {
+        padding: 5px 10px;
+        background-color: #00d1b2;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
 
-        table input[type="text"] {
-            width: 100%;
-            border: none;
-            text-align: center;
-            background-color: transparent;
-        }
+      .view-image-btn:hover {
+        background-color: #339900;
+      }
 
-        table input[type="text"]:focus {
-            outline: none;
-            background-color: #e6f7ff;
-        }
+      #image-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
 
-        table textarea {
-            width: 100%;
-            border: none;
-            resize: vertical;
-            text-align: center;
-            background-color: transparent;
-            overflow: hidden;
-            min-height: 30px;
-        }
+      #image-modal.hidden {
+        display: none;
+      }
 
-        table textarea:focus {
-            outline: none;
-            background-color: #e6f7ff;
-        }
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        position: relative;
+      }
 
-
-
-
-        /* tab design */
-
-       
-    .view-image-btn {
-      padding: 5px 10px;
-      background-color: #00d1b2;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .view-image-btn:hover {
-      background-color: #339900;
-    }
-
-    
-    #image-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    #image-modal.hidden {
-      display: none;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      position: relative;
-    }
-
-    /* .modal-content img {
+      /* .modal-content img {
       max-width: 100%;
       height: auto;
     } */
 
-    .modal-content img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; 
-    width: 700px; 
-    height: 500px;
-}
+      .modal-content img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        width: 700px;
+        height: 500px;
+      }
 
+      #close-modal {
+        display: block;
+        margin: 20px auto 0;
+        background-color: #ff5c5c;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+      }
 
-    #close-modal {
-  display: block;
-  margin: 20px auto 0; 
-  background-color: #ff5c5c;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
-}
+      #close-modal:hover {
+        background-color: #e60000;
+      }
 
-    #close-modal:hover {
-      background-color: #e60000;
-    }
-
-    
-    .blur {
-      filter: blur(5px);
-    }
+      .blur {
+        filter: blur(5px);
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="logo">GROUP 12</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="#">Technical</a></li>
-            <li><a href="group-diary.html">Group Diary</a></li>
-            <li><a href="project.html" class="active">Project Overview</a></li>
-            <li><a href="#">Style Guide</a></li>
-            <li><a href="result.html">Result</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <a href="https://nhatquan-2005.github.io/hci2024group12/" class="project-btn">Go to project</a>
+      <div class="logo">GROUP 12</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Technical</a></li>
+        <li><a href="group-diary.html">Group Diary</a></li>
+        <li><a href="project.html" class="active">Project Overview</a></li>
+        <li><a href="#">Style Guide</a></li>
+        <li><a href="result.html">Result</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <a
+        href="https://nhatquan-2005.github.io/hci2024group12/"
+        class="project-btn"
+        >Go to project</a
+      >
     </nav>
 
     <div class="container">
-        <h1>Project Overview</h1>
-        <p>Welcome to the project page of Group 12. Explore the tabs below to see our progress.</p>
+      <h1>Project Overview</h1>
+      <p>
+        Welcome to the project page of Group 12. Explore the tabs below to see
+        our progress.
+      </p>
 
-        <div class="project-tabs">
-            <button class="tab-link active" onclick="openTab(event, 'Requirement')">Requirement</button>
-            <button class="tab-link" onclick="openTab(event, 'Design')">Design</button>
-            <button class="tab-link" onclick="openTab(event, 'Implementation')">Implementation</button>
-        </div>
+      <div class="project-tabs">
+        <button class="tab-link active" onclick="openTab(event, 'Requirement')">
+          Requirement
+        </button>
+        <button class="tab-link" onclick="openTab(event, 'Design')">
+          Design
+        </button>
+        <button class="tab-link" onclick="openTab(event, 'Implementation')">
+          Implementation
+        </button>
+      </div>
 
-        <div id="Requirement" class="tab-content active">
-            <h2>Requirement</h2>
-            <table id="editableTable">
-                <thead>
-                    <tr>
-                        <th>Number</th>
-                        <th>Functional</th>
-                        <th>Designer</th>
-                        <th>Performer</th>
-                        <th>Intend time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id>23130145</td>
-                        <td>Đăng nhập, Quản lý tài khoản</td>
-                        <td>Phạm Nhật Khang</td>
-                        <td><div>Phạm Nhật Khang</div></td>
-                        <td>2 TUẦN</td>
-                        <td>Đang hoàn thiện</td>
-                    </tr>
-                    <tr>
-                        <td>23130102</td>
-                        <td>Quản lý sinh viên, Quản lý lớp học</td>
-                        <td>Bùi Văn Hiếu</td>
-                        <td>Bùi Văn Hiếu</td>
-                        <td>2 TUẦN</td>
-                        <td>Đang hoàn thiện</td>
-                    </tr>
-                    <tr>
-                        <td>23130324</td>
-                        <td>Quản lý môn học, Quản lý lịch học</td>
-                        <td>Phạm Hoàng Duy Thức</td>
-                        <td>Phạm Hoàng Duy Thức</td>
-                        <td>2 TUẦN</td>
-                        <td>Đang hoàn thiện</td>
-                    </tr>
-                    <tr>
-                        <td>23130267</td>
-                        <td>Quản lý điểm, Báo cáo và thống kê</td>
-                        <td>Võ Lê Hương Quỳnh</td>
-                        <td>Võ Lê Hương Quỳnh</td>
-                        <td>2 TUẦN</td>
-                        <td>Đang hoàn thiện</td>
-                    </tr>
-                    <tr>
-                        <td>23130257</td>
-                        <td>Hỗ trợ trực tuyến, Phản hồi và đánh giá</td>
-                        <td>Nguyễn Trần Nhật Quân</td>
-                        <td>Nguyễn Trần Nhật Quân</td>
-                        <td>2 TUẦN</td>
-                        <td>Đang hoàn thiện</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div id="Design" class="tab-content">
-            <table>
-                <thead>
-                  <tr>
-                    <th>Họ và Tên</th>
-                    <th>Nhiệm vụ</th>
-                    <th>Trạng thái</th>
-                    <th>Hình ảnh</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Phạm Nhật Khang</td>
-                    <td>Đăng nhập, Quản lý tài khoản</td>
-                    <td>Hoàn thành</td>
-                    <td><button class="view-image-btn" data-image="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\btnhom_Login.png">Xem</button></td>
-                  </tr>
-                  <tr>
-                    <td>Bùi Văn Hiếu</td>
-                    <td>Quản lý sinh viên, Quản lý lớp học</td>
-                    <td>Hoàn thành</td>
-                    <td><button class="view-image-btn" data-image="image1.png">Xem</button></td>
-                  </tr>
-                  <tr>
-                    <td>Phạm Hoàng Duy Thức</td>
-                    <td>Quản lý môn học, Quản lý lịch học</td>
-                    <td>Hoàn thành</td>
-                    <td><button class="view-image-btn" data-image="image1.png">Xem</button></td>
-                  </tr>
-                  <tr>
-                    <td>Võ lê Hương Quỳnh</td>
-                    <td>Quản lý điểm, Báo cáo và thống kê</td>
-                    <td>Hoàn thành</td>
-                    <td><button class="view-image-btn" data-image="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\QLĐ.png">Xem</button></td>
-                  </tr>
-                  <tr>
-                    <td>Nguyễn Trần Nhật Quân</td>
-                    <td>Hỗ trợ trực tuyến, Phản hồi và đánh giá</td>
-                    <td>Hoàn thành</td>
-                    <td><button class="view-image-btn" data-image="image1.png">Xem</button></td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
+      <div id="Requirement" class="tab-content active">
+        <h2>Requirement</h2>
+        <table id="editableTable">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Functional</th>
+              <th>Designer</th>
+              <th>Performer</th>
+              <th>Intend time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id>23130145</td>
+              <td>Đăng nhập, Quản lý tài khoản</td>
+              <td>Phạm Nhật Khang</td>
+              <td><div>Phạm Nhật Khang</div></td>
+              <td>2 TUẦN</td>
+              <td>Đang hoàn thiện</td>
+            </tr>
+            <tr>
+              <td>23130102</td>
+              <td>Quản lý sinh viên, Quản lý lớp học</td>
+              <td>Bùi Văn Hiếu</td>
+              <td>Bùi Văn Hiếu</td>
+              <td>2 TUẦN</td>
+              <td>Đang hoàn thiện</td>
+            </tr>
+            <tr>
+              <td>23130324</td>
+              <td>Quản lý môn học, Quản lý lịch học</td>
+              <td>Phạm Hoàng Duy Thức</td>
+              <td>Phạm Hoàng Duy Thức</td>
+              <td>2 TUẦN</td>
+              <td>Đang hoàn thiện</td>
+            </tr>
+            <tr>
+              <td>23130267</td>
+              <td>Nhập điểm, xem điểm , phúc khảo, hỏi đáp học tập</td>
+              <td>Võ Lê Hương Quỳnh</td>
+              <td>Võ Lê Hương Quỳnh</td>
+              <td>2 TUẦN</td>
+              <td>Hoàn thành</td>
+            </tr>
+            <tr>
+              <td>23130257</td>
+              <td>Hỗ trợ trực tuyến, Phản hồi và đánh giá</td>
+              <td>Nguyễn Trần Nhật Quân</td>
+              <td>Nguyễn Trần Nhật Quân</td>
+              <td>2 TUẦN</td>
+              <td>Đang hoàn thiện</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div id="image-modal" class="hidden">
-            <div class="modal-content">
-              <img id="modal-image" src="" alt="Hình ảnh">
-              <button id="close-modal">Đóng</button>
-            </div>
-          </div>
+      <div id="Design" class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Họ và Tên</th>
+              <th>Nhiệm vụ</th>
+              <th>Trạng thái</th>
+              <th>Hình ảnh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Phạm Nhật Khang</td>
+              <td>Đăng nhập, Quản lý tài khoản</td>
+              <td>Hoàn thành</td>
+              <td>
+                <button
+                  class="view-image-btn"
+                  data-image="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\btnhom_Login.png"
+                >
+                  Xem
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Bùi Văn Hiếu</td>
+              <td>Quản lý sinh viên, Quản lý lớp học</td>
+              <td>Hoàn thành</td>
+              <td>
+                <button class="view-image-btn" data-image="image1.png">
+                  Xem
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Phạm Hoàng Duy Thức</td>
+              <td>Quản lý môn học, Quản lý lịch học</td>
+              <td>Hoàn thành</td>
+              <td>
+                <button class="view-image-btn" data-image="image1.png">
+                  Xem
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Võ lê Hương Quỳnh</td>
+              <td>Nhập điểm, xem điểm , phúc khảo, hỏi đáp học tập</td>
+              <td>Hoàn thành</td>
+              <td>
+                <button
+                  class="view-image-btn"
+                  data-image="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\QLĐ.png"
+                >
+                  Xem
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Nguyễn Trần Nhật Quân</td>
+              <td>Hỗ trợ trực tuyến, Phản hồi và đánh giá</td>
+              <td>Hoàn thành</td>
+              <td>
+                <button class="view-image-btn" data-image="image1.png">
+                  Xem
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div id="Implementation" class="tab-content">
-            <h2>Implementation</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Chức năng</th>
-                        <th>Nội dung</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1. Đăng nhập/Đăng xuất</td>
-                        <td>- Chức năng cho phép người dùng đăng nhập và đăng xuất khỏi hệ thống.</td>
-                        <td><a href="#" class="empty-link">Chưa có link</a></td>
-                    </tr>
-                    <tr>
-                        <td>2. Quản lý tài khoản</td>
-                        <td>- Tạo mới, cập nhật, và xóa tài khoản người dùng.<br>- Phân quyền cho người dùng.</td>
-                        <td><a href="#" class="empty-link">Chưa có link</a></td>
-                    </tr>
-                    <tr>
-                        <td>3. Quản lý sinh viên</td>
-                        <td>- Thêm mới, cập nhật và xóa thông tin sinh viên.<br>- Xem và tìm kiếm thông tin chi tiết của sinh viên.</td>
-                        <td><a href="#" class="empty-link">Chưa có link</a></td>
-                    </tr>
-                    <tr>
-                        <td>4. Quản lý lớp học</td>
-                        <td>- Thêm mới, cập nhật và xóa thông tin lớp học.<br>- Phân công sinh viên vào lớp học.</td>
-                        <td><a href="#" class="empty-link">Chưa có link</a></td>
-                    </tr>
-                    <tr>
-                        <td>5. Quản lý môn học</td>
-                        <td>- Thêm mới, cập nhật và xóa thông tin môn học.<br>- Gán môn học cho các lớp học.</td>
-                        <td><a href="https://nhatquan-2005.github.io/hci2024group12/subjectInfo.html" class="empty-link">Xem</a></td>
-                    </tr>
-                    <tr>
-                        <td>6. Quản lý lịch học</td>
-                        <td>- Tạo, cập nhật và xóa thời khóa biểu cho các lớp học và sinh viên.<br>- Xem lịch học chi tiết.</td>
-                        <td><a href="https://nhatquan-2005.github.io/hci2024group12/schedule.html" class="empty-link">Xem</a></td>
-                    </tr>
-                    <tr>
-                        <td>7. Quản lý điểm</td>
-                        <td>- Nhập, cập nhật và xóa điểm số của sinh viên.<br>- Xem bảng điểm chi tiết và tổng kết của từng sinh viên.</td>
-                        <td><a href="#" class="empty-link">Chưa có link</a></td>
-                    </tr>
-                    <tr>
-                        <td>8. Báo cáo thống kê</td>
-                        <td>- Tạo báo cáo và thống kê về tình hình học tập và các thông tin liên quan.</td>
-                        <td><a href="#" class="empty-link">Chưa có link</a></td>
-                    </tr>
-                    <tr>
-                        <td>9. Hỗ trợ trực tuyến</td>
-                        <td>- Hỗ trợ trực tuyến như chat hoặc diễn đàn thảo luận.<br>- Các kênh liên lạc giữa sinh viên và giảng viên.</td>
-                        <td><a href="https://nhatquan-2005.github.io/hci2024group12/support.html" class="empty-link">Xem</a></td>
-                    </tr>
-                    <tr>
-                        <td>10. Khảo sát đánh giá</td>
-                        <td>- Thu thập và quản lý phản hồi từ sinh viên và giảng viên.<br>- Thực hiện các cuộc khảo sát và đánh giá chất lượng giảng dạy.</td>
-                        <td><a href="https://nhatquan-2005.github.io/hci2024group12/feedback.html" class="empty-link">Xem</a></td>
-                    </tr>
-                </tbody>
-            </table>
+      <div id="image-modal" class="hidden">
+        <div class="modal-content">
+          <img id="modal-image" src="" alt="Hình ảnh" />
+          <button id="close-modal">Đóng</button>
         </div>
+      </div>
+
+      <div id="Implementation" class="tab-content">
+        <h2>Implementation</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Chức năng</th>
+              <th>Nội dung</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Đăng nhập/Đăng xuất</td>
+              <td>
+                - Chức năng cho phép người dùng đăng nhập và đăng xuất khỏi hệ
+                thống.
+              </td>
+              <td><a href="#" class="empty-link">Chưa có link</a></td>
+            </tr>
+            <tr>
+              <td>2. Quản lý tài khoản</td>
+              <td>
+                - Tạo mới, cập nhật, và xóa tài khoản người dùng.<br />- Phân
+                quyền cho người dùng.
+              </td>
+              <td><a href="#" class="empty-link">Chưa có link</a></td>
+            </tr>
+            <tr>
+              <td>3. Quản lý sinh viên</td>
+              <td>
+                - Thêm mới, cập nhật và xóa thông tin sinh viên.<br />- Xem và
+                tìm kiếm thông tin chi tiết của sinh viên.
+              </td>
+              <td><a href="#" class="empty-link">Chưa có link</a></td>
+            </tr>
+            <tr>
+              <td>4. Quản lý lớp học</td>
+              <td>
+                - Thêm mới, cập nhật và xóa thông tin lớp học.<br />- Phân công
+                sinh viên vào lớp học.
+              </td>
+              <td><a href="#" class="empty-link">Chưa có link</a></td>
+            </tr>
+            <tr>
+              <td>5. Quản lý môn học</td>
+              <td>
+                - Thêm mới, cập nhật và xóa thông tin môn học.<br />- Gán môn
+                học cho các lớp học.
+              </td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/subjectInfo.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>6. Quản lý lịch học</td>
+              <td>
+                - Tạo, cập nhật và xóa thời khóa biểu cho các lớp học và sinh
+                viên.<br />- Xem lịch học chi tiết.
+              </td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/schedule.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>7. Nhập điểm</td>
+              <td>
+                - Nhập, cập nhật và xóa điểm số của sinh viên, xem thống kê số
+                sinh viên đạt/rớt.
+              </td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/nhap-diem.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>8. Xem điểm</td>
+              <td>- Xem bảng điểm chi tiết và tổng kết của từng sinh viên.</td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/diem-sv.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>9. Phúc khảo</td>
+              <td>
+                - Gửi yêu cầu phúc khảo , xem danh sách yêu cầu phúc khảo.
+              </td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/phuc-khao.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>10. Hỏi đáp học tập</td>
+              <td>- Gửi câu hỏi về học tập, trả lời câu hỏi về học tập.</td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/hoi-dap-hoc-tap.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>11. Hỗ trợ trực tuyến</td>
+              <td>
+                - Hỗ trợ trực tuyến như chat hoặc diễn đàn thảo luận.<br />- Các
+                kênh liên lạc giữa sinh viên và giảng viên.
+              </td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/support.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>12. Khảo sát đánh giá</td>
+              <td>
+                - Thu thập và quản lý phản hồi từ sinh viên và giảng viên.<br />-
+                Thực hiện các cuộc khảo sát và đánh giá chất lượng giảng dạy.
+              </td>
+              <td>
+                <a
+                  href="https://nhatquan-2005.github.io/hci2024group12/feedback.html"
+                  class="empty-link"
+                  >Xem</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <script>
-        function openTab(event, tabName) {
-            const tabContents = document.querySelectorAll(".tab-content");
-            const tabLinks = document.querySelectorAll(".tab-link");
+      function openTab(event, tabName) {
+        const tabContents = document.querySelectorAll(".tab-content");
+        const tabLinks = document.querySelectorAll(".tab-link");
 
-            tabContents.forEach(content => content.classList.remove("active"));
-            tabContents.forEach(content => content.style.display = "none");
+        tabContents.forEach((content) => content.classList.remove("active"));
+        tabContents.forEach((content) => (content.style.display = "none"));
 
-            tabLinks.forEach(link => link.classList.remove("active"));
+        tabLinks.forEach((link) => link.classList.remove("active"));
 
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            event.currentTarget.classList.add("active");
-        }
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
 
-        document.getElementById("Requirement").style.display = "block";
+      document.getElementById("Requirement").style.display = "block";
 
-        function addRow() {
-            const table = document.getElementById("editableTable").getElementsByTagName("tbody")[0];
-            const newRow = table.insertRow();
+      function addRow() {
+        const table = document
+          .getElementById("editableTable")
+          .getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
 
-            newRow.innerHTML = `
+        newRow.innerHTML = `
                 <td><textarea placeholder="Number"></textarea></td>
                 <td><textarea placeholder="Functional"></textarea></td>
                 <td><textarea placeholder="Designer"></textarea></td>
@@ -511,34 +639,36 @@
                 <td><textarea placeholder="Status"></textarea></td>
                 <td><button onclick="deleteRow(this)">Delete</button></td>
             `;
-        }
+      }
 
-        function deleteRow(button) {
-            const row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
+      function deleteRow(button) {
+        const row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
 
-        function openTab(event, tabName) {
-            const tabContents = document.querySelectorAll(".tab-content");
-            const tabLinks = document.querySelectorAll(".tab-link");
+      function openTab(event, tabName) {
+        const tabContents = document.querySelectorAll(".tab-content");
+        const tabLinks = document.querySelectorAll(".tab-link");
 
-            tabContents.forEach(content => content.classList.remove("active"));
-            tabContents.forEach(content => content.style.display = "none");
+        tabContents.forEach((content) => content.classList.remove("active"));
+        tabContents.forEach((content) => (content.style.display = "none"));
 
-            tabLinks.forEach(link => link.classList.remove("active"));
+        tabLinks.forEach((link) => link.classList.remove("active"));
 
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            event.currentTarget.classList.add("active");
-        }
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
 
-        document.getElementById("Requirement").style.display = "block";
+      document.getElementById("Requirement").style.display = "block";
 
-        function addRow() {
-            const table = document.getElementById("editableTable").getElementsByTagName("tbody")[0];
-            const newRow = table.insertRow();
+      function addRow() {
+        const table = document
+          .getElementById("editableTable")
+          .getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
 
-            newRow.innerHTML = `
+        newRow.innerHTML = `
                 <td><textarea placeholder="Number"></textarea></td>
                 <td><textarea placeholder="Functional"></textarea></td>
                 <td><textarea placeholder="Designer"></textarea></td>
@@ -547,36 +677,35 @@
                 <td><textarea placeholder="Status"></textarea></td>
                 <td><button onclick="deleteRow(this)">Delete</button></td>
             `;
-        }
+      }
 
-        function deleteRow(button) {
-            const row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
+      function deleteRow(button) {
+        const row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
 
-        // tab design
-        document.addEventListener("DOMContentLoaded", () => {
-      const buttons = document.querySelectorAll(".view-image-btn");
-      const modal = document.getElementById("image-modal");
-      const modalImage = document.getElementById("modal-image");
-      const closeModal = document.getElementById("close-modal");
-      const tableContainer = document.querySelector(".table-container");
+      // tab design
+      document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".view-image-btn");
+        const modal = document.getElementById("image-modal");
+        const modalImage = document.getElementById("modal-image");
+        const closeModal = document.getElementById("close-modal");
+        const tableContainer = document.querySelector(".table-container");
 
-      buttons.forEach(button => {
-        button.addEventListener("click", () => {
-          const imageUrl = button.getAttribute("data-image");
-          modalImage.src = imageUrl;
-          modal.classList.remove("hidden");
-          tableContainer.classList.add("blur");
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const imageUrl = button.getAttribute("data-image");
+            modalImage.src = imageUrl;
+            modal.classList.remove("hidden");
+            tableContainer.classList.add("blur");
+          });
+        });
+
+        closeModal.addEventListener("click", () => {
+          modal.classList.add("hidden");
+          tableContainer.classList.remove("blur");
         });
       });
-
-      closeModal.addEventListener("click", () => {
-        modal.classList.add("hidden");
-        tableContainer.classList.remove("blur");
-      });
-    });
     </script>
-
-</body>
+  </body>
 </html>
